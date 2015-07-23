@@ -1,0 +1,72 @@
+﻿{
+  "ServiceName": "172.19.133.73",
+  "Username": "IWPAAdmin",
+  "Password": {
+    "EncryptionMethod": "DPAPI_MACHINE",
+    "Content": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA432ckrbPWUewMxxEuwDMRgQAAAACAAAAAAADZgAAwAAAABAAAADB7+8PWZeC4tUmS8lkRUWWAAAAAASAAACgAAAAEAAAAANcDGkMU6NWLf5Zhwmn57kQAAAAyS5LgKN06CL9H57n7Qw6RBQAAAD8mu8j0iskV9EBHouvV6oMIYOqcw=="
+  },
+  "NumberSecondsToRefresh": 15,
+  "DoubleTest" : 11.23,
+  "SvcLimit": 30,
+  "SkillGroups": "W:CAN_QKN_EN_SERV_SUPP_PHN",
+  "MonitoredSkills": "MonitoredSkills",
+  "UserStatusListEventTimeout": 60,
+  "IsFun": false,
+  "simpleArray" : ["hello", {
+    "EncryptionMethod": "DPAPI_MACHINE",
+    "Content": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA432ckrbPWUewMxxEuwDMRgQAAAACAAAAAAADZgAAwAAAABAAAADB7+8PWZeC4tUmS8lkRUWWAAAAAASAAACgAAAAEAAAAANcDGkMU6NWLf5Zhwmn57kQAAAAyS5LgKN06CL9H57n7Qw6RBQAAAD8mu8j0iskV9EBHouvV6oMIYOqcw=="
+  }, "hi"],
+  "arrayOfArray": [
+      [1,2,3],
+      [4,5,6],
+      [7,8,9]
+  ],
+  "SampleObject": {
+    "key1": "Value1",
+    "key2": {
+      "EncryptionMethod": "DPAPI_MACHINE",
+      "Content": "AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA432ckrbPWUewMxxEuwDMRgQAAAACAAAAAAADZgAAwAAAABAAAAA5ibwUp9WPu0ZHxMZNEBneAAAAAASAAACgAAAAEAAAAPn4MRCpAO50Koy3NFNrqYYQAAAAvk0aeP4NMXGHHXeTWT97kxQAAADPeikyeEET3WfAsAUwqZPnlHbzDw=="
+    }
+  },
+  "ICServers": [
+    {
+      "ServerName": "Server1",
+      "endpoint": [
+        {
+          "name": "endpoint11",
+          "address": "Address12"
+        },
+        {
+          "name": "endpoint12",
+          "address": "Address12"
+        }
+      ]
+    },
+    {
+      "ServerName": "Server2",
+      "endpoint": [
+        {
+          "name": "endpoint21",
+          "address": "Address21"
+        },
+        {
+          "name": "endpoint22",
+          "address": "Address22"
+        }
+      ]
+    },
+    {
+      "ServerName": "Server3",
+      "endpoint": [
+        {
+          "name": "endpoint31",
+          "address": "Address31"
+        },
+        {
+          "name": "endpoint32",
+          "address": "Address32"
+        }
+      ]
+    }
+  ]
+}
