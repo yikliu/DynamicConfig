@@ -11,27 +11,6 @@ using DynamicConfig.ConfigTray.ViewModel.ConfigChangedEvent;
 namespace DynamicConfig.ConfigTray.ViewModel
 {
     /// <summary>
-    /// Enum ConfigNodeType : Leaf, Array or Object
-    /// </summary>
-    public enum ConfigNodeType
-    {
-        /// <summary>
-        /// NodeType: Leaf
-        /// </summary>
-        LEAF,
-
-        /// <summary>
-        /// NodeType: Array
-        /// </summary>
-        ARRAY,
-
-        /// <summary>
-        /// NodeType: Object
-        /// </summary>
-        OBJECT
-    }
-
-    /// <summary>
     /// abstract class representing a node in JSON hierarchy, instances of its subclass are
     /// viewmodel for treeview items
     /// </summary>

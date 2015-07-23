@@ -1,7 +1,9 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using DynamicConfig.ConfigTray;
 using DynamicConfig.ConfigTray.JSONConfig;
+using DynamicConfig.ConfigTray.ViewModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DynamicConfig.Test.DeveloperView
@@ -32,26 +34,44 @@ namespace DynamicConfig.Test.DeveloperView
             string name = ConfigDaemon.Root.ServiceName;
             Assert.AreEqual("172.19.133.73", name);
 
-            int NumberSecondsToRefresh = ConfigDaemon.Root.NumberSecondsToRefresh;
-            Assert.AreEqual(15, NumberSecondsToRefresh);
+            int numberSecondsToRefresh = ConfigDaemon.Root.NumberSecondsToRefresh;
+            Assert.AreEqual(15, numberSecondsToRefresh);
 
             //also can be read as string
-            string NumberSecondsToRefreshInString = ConfigDaemon.Root.NumberSecondsToRefresh;
-            Assert.AreEqual("15", NumberSecondsToRefreshInString);
+            string numberSecondsToRefreshInString = ConfigDaemon.Root.NumberSecondsToRefresh;
+            Assert.AreEqual("15", numberSecondsToRefreshInString);
 
-            bool IsFun = ConfigDaemon.Root.IsFun;
-            Assert.AreEqual(false, IsFun);
+            bool isFun = ConfigDaemon.Root.IsFun;
+            Assert.AreEqual(false, isFun);
 
             //also can be read as string
-            string IsFunInString = ConfigDaemon.Root.IsFun;
-            Assert.AreEqual("false", IsFunInString, true);
+            string isFunInString = ConfigDaemon.Root.IsFun;
+            Assert.AreEqual("false", isFunInString, true);
+        }
+
+        [TestMethod]
+        public void RaiseEventWhenWritten()
+        {
+            ConfigLeafNode nameNode = ConfigDaemon.Root.ServiceName;
+            Assert.AreEqual("172.19.133.73", nameNode);
+
+            var newNameNode = (string) nameNode;
+            nameNode.PropertyChanged += delegate(object sender, PropertyChangedEventArgs args)
+            {
+                newNameNode = ConfigDaemon.Root.ServiceName;
+            };
+
+            ConfigDaemon.Root.ServiceName = "NewServiceName";
+            
+
         }
 
         [TestMethod]
         public void ReadArray()
         {
             dynamic icservers = ConfigDaemon.Root.ICServers;
-            Assert.AreEqual("0", "0");
+            Assert.IsNotNull(icservers);
+            Assert.IsInstanceOfType(icservers, typeof(ConfigListNode));
         }
 
         [TestMethod]
@@ -103,24 +123,24 @@ namespace DynamicConfig.Test.DeveloperView
         [TestMethod]
         public void ReadNonExistingNode()
         {
-            var notExistKVP = ConfigDaemon.Root.Foo.Bar; //access non-existent node with key
+            var notExistKvp = ConfigDaemon.Root.Foo.Bar; //access non-existent node with key
             var notExistedArrayElement = ConfigDaemon.Root[0]; //access non-existent node with index
-            var deepButStillReturnsNEP = ConfigDaemon.Root.Foo.Bar.Foo1.Bar1.Foo2.bar2; //deep in hierarchy
+            var deepButStillReturnsNep = ConfigDaemon.Root.Foo.Bar.Foo1.Bar1.Foo2.bar2; //deep in hierarchy
 
-            string nepInString = (string)deepButStillReturnsNEP; // converts to ""
-            int nepInInteger = (int)deepButStillReturnsNEP; //convert to 0
+            string nepInString = (string)deepButStillReturnsNep; // converts to ""
+            int nepInInteger = (int)deepButStillReturnsNep; //convert to 0
 
-            Console.WriteLine(notExistKVP.GetType().Name); //output "NullExceptionPreventer"
+            Console.WriteLine(notExistKvp.GetType().Name); //output "NullExceptionPreventer"
             Console.WriteLine(notExistedArrayElement.GetType().Name);//output "NullExceptionPreventer"
-            Console.WriteLine(deepButStillReturnsNEP.GetType().Name);//output "NullExceptionPreventer"
+            Console.WriteLine(deepButStillReturnsNep.GetType().Name);//output "NullExceptionPreventer"
 
             Console.WriteLine(nepInString);  //output ""
             Console.WriteLine(nepInInteger); //output "0"
             Console.WriteLine(nepInInteger.GetType().Name); //output "Int32"
 
-            Assert.IsInstanceOfType(notExistKVP, typeof(NullExceptionPreventer));
+            Assert.IsInstanceOfType(notExistKvp, typeof(NullExceptionPreventer));
             Assert.IsInstanceOfType(notExistedArrayElement, typeof(NullExceptionPreventer));
-            Assert.IsInstanceOfType(deepButStillReturnsNEP, typeof(NullExceptionPreventer));
+            Assert.IsInstanceOfType(deepButStillReturnsNep, typeof(NullExceptionPreventer));
         }
 
         [TestMethod]

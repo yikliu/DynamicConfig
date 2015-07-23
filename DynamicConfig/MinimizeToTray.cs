@@ -45,13 +45,8 @@ namespace DynamicConfig.ConfigTray
 
             private ContextMenu _ctmStrip;
 
-            /// <summary>
-            /// Initializes a new instance of the MinimizeToTrayInstance class.
-            /// </summary>
-            /// <param name="window">Window instance to attach to.</param>
             public MinimizeToTrayInstance(Window window)
             {
-                Debug.Assert(window != null, "window parameter is null.");
                 _window = window;
                 _window.StateChanged += new EventHandler(HandleStateChanged);
 
@@ -115,14 +110,8 @@ namespace DynamicConfig.ConfigTray
 
             public void Dispose()
             {
-                if (_notifyIcon != null)
-                {
-                    _notifyIcon.Dispose();
-                }
-                if (_ctmStrip != null)
-                {
-                    _ctmStrip.Dispose();
-                }
+                _notifyIcon?.Dispose();
+                _ctmStrip?.Dispose();
             }
 
             ~MinimizeToTrayInstance()

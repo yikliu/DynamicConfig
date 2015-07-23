@@ -81,14 +81,7 @@
                 <Button Width="100" DockPanel.Dock="Left" Content="Delete"
                         BorderThickness="0" HorizontalAlignment="Left" Margin="5"  Command="commands:CustomCommands.Delete"
                         Visibility="{Binding Path=IsEnabled, RelativeSource={RelativeSource Self}, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                <Menu Height="36" DockPanel.Dock="Right" HorizontalAlignment="Right" Visibility="Collapsed">
-                    <MenuItem Header="Support">
-                        <MenuItem Header="ISupport" Click="ISupportMenuItem_OnClick" />
-                        <MenuItem Header="ServiceNow" Click="ServiceNowMenuItem_OnClick" />
-                        <MenuItem Header="Support FTP" />
-                        <MenuItem Header="_Exit" />
-                    </MenuItem>
-                </Menu>
+                
             </DockPanel>
             <DockPanel DockPanel.Dock="Bottom" Height="20">
                 <StatusBar DockPanel.Dock="Bottom">

@@ -131,10 +131,10 @@
     <Compile Include="ViewModel\ConfigListNode.cs" />
     <Compile Include="ViewModel\ConfigNode.cs" />
     <Compile Include="ViewModel\ConfigNodeFactory.cs" />
+    <Compile Include="ViewModel\ConfigNodeType.cs" />
     <Compile Include="ViewModel\ConfigObjectNode.cs" />
     <Compile Include="ViewModel\KeyType.cs" />
     <Compile Include="ViewModel\RootModel.cs" />
-    <Compile Include="ViewModel\ServiceChecker.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

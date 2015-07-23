@@ -39,7 +39,6 @@ namespace DynamicConfig.ConfigTray.Crypt
         {
             {EncryptionMethod.DPAPI_MACHINE, new Lazy<ICipher>(()=> new DPAPIMachineCipher())},
             {EncryptionMethod.DPAPI_USER, new Lazy<ICipher>(()=> new DPAPIUserCipher())},
-            
         };
 
         public static ICipher CreateCipher(EncryptionMethod encrypt)

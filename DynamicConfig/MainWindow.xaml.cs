@@ -20,8 +20,6 @@ namespace DynamicConfig.ConfigTray
 
         private DeleteCommand _deleteCommand;
 
-        private ServiceChecker _serviceChecker;
-
         private ConfigNode _selectedNode;
 
         /// <summary>
@@ -30,7 +28,7 @@ namespace DynamicConfig.ConfigTray
         public MainWindow()
         {
             InitializeComponent();
-            ConfigDaemon.UISynchronizationContext = SynchronizationContext.Current;
+            ConfigDaemon.UiSynchronizationContext = SynchronizationContext.Current;
 
             ShowCloseButton = false;
 
@@ -75,8 +73,6 @@ namespace DynamicConfig.ConfigTray
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
             _selectedNode = ConfigDaemon.Root;
-
-            _serviceChecker = new ServiceChecker(ConfigDaemon.Root.ServiceName);
             
             this.WindowState = WindowState.Minimized; //minimize when loaded
         }
@@ -169,32 +165,7 @@ namespace DynamicConfig.ConfigTray
             var leafNode = _selectedNode as ConfigLeafNode;
             leafNode.Edit();
         }
-
-        private void StartService_Click(object sender, RoutedEventArgs e)
-        {
-            _serviceChecker.Start();
-        }
-
-        private void StopService_Click(object sender, RoutedEventArgs e)
-        {
-            _serviceChecker.Stop();
-        }
-
-        private void RestartService_Click(object sender, RoutedEventArgs e)
-        {
-            _serviceChecker.Restart();
-        }
-
-        private void ISupportMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://isupportweb.inin.com");
-        }
-
-        private void ServiceNowMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://inincorp.service-now.com");
-        }
-
+        
         private void ApplyButton_Click(object sender, RoutedEventArgs e)
         {
             BindingExpression be = ValueEdit.GetBindingExpression(TextBox.TextProperty);

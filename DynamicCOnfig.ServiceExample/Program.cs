@@ -24,17 +24,14 @@ namespace DynamicConfig.ServiceExample
 
         public Program()
         {
-            ServiceName = "SelfHost Service";
+            ServiceName = "Sample Service";
         }
 
         protected override void OnStart(string[] args)
         {
             try
             {
-                if (ServiceHost != null)
-                {
-                    ServiceHost.Close();
-                }
+                ServiceHost?.Close();
 
                 ConfigDaemon.LoadConfig();
                 //get value from ConfigDaemon if service need some parameters to start
@@ -42,8 +39,8 @@ namespace DynamicConfig.ServiceExample
 
                 //Start the actual service
                 ServiceHost = new ServiceHost(new SampleServiceImp(value));
-                var behaviour = ServiceHost.Description.Behaviors.Find<ServiceBehaviorAttribute>();
-                behaviour.InstanceContextMode = InstanceContextMode.Single;
+                var behavior = ServiceHost.Description.Behaviors.Find<ServiceBehaviorAttribute>();
+                behavior.InstanceContextMode = InstanceContextMode.Single;
 
                 ServiceHost.Open();
             }
@@ -81,7 +78,7 @@ namespace DynamicConfig.ServiceExample
                 else
                 {
                     ConfigDaemon.OnReloadTimerElapsed += ConfigDaemonOnOnReloadTimerElapsed;
-                    ConfigDaemon.StartWPFUIThread();
+                    ConfigDaemon.StartWpfUiThread();
 
                 }
             }

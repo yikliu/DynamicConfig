@@ -51,8 +51,6 @@ namespace DynamicConfig.ConfigTray
         /// </summary>
         private static Timer _reloadTimer;
 
-        private static SynchronizationContext _uiContext;
-
         /// <summary>
         /// Delegate UserConfigChangedHandler
         /// </summary>
@@ -73,18 +71,7 @@ namespace DynamicConfig.ConfigTray
         /// Gets the root config in DynamicObject.
         /// </summary>
         /// <value>The root.</value>
-        public static dynamic Root
-        {
-            get { return _root; }
-        }
-
-        public static ExpandoObject RootAsExpando
-        {
-            get
-            {
-                return _root.ConvertToExpando();
-            }
-        }
+        public static dynamic Root => _root;
 
         /// <summary>
         /// load config data from source
@@ -128,7 +115,7 @@ namespace DynamicConfig.ConfigTray
 
                 LoadSuccess = true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 LoadSuccess = false;
             }
@@ -137,7 +124,7 @@ namespace DynamicConfig.ConfigTray
         /// <summary>
         /// Start WPF Window Thread
         /// </summary>
-        public static void StartWPFUIThread()
+        public static void StartWpfUiThread()
         {
             var newWindowThread = new Thread(StartConfigTray);
             newWindowThread.SetApartmentState(ApartmentState.STA);
@@ -149,11 +136,7 @@ namespace DynamicConfig.ConfigTray
         /// </summary>
         /// <remarks>Don't call this getter before or immediately after StartWPFUIThread(), as the UI starts in a different thread and takes some time to load the SynchronizationContext. 
         /// </remarks>
-        public static SynchronizationContext UISynchronizationContext
-        {
-            get { return _uiContext; }
-            internal set { _uiContext = value; }
-        }
+        public static SynchronizationContext UiSynchronizationContext { get; internal set; }
 
         internal static RootModel GetCurrentDataContext()
         {
@@ -182,20 +165,15 @@ namespace DynamicConfig.ConfigTray
         private static void ConfigNodePropertyChanged(object sender, ConfigChangedEventArgs evtArgs)
         {
             WriteBack();
-
             //notify consuming applications
-            if (OnUserConfigChanged != null)
-            {
-                OnUserConfigChanged(evtArgs);
-            }
+            OnUserConfigChanged?.Invoke(evtArgs);
         }
 
         private static void ReloadTimerOnElapsed(object sender, ElapsedEventArgs e)
         {
-            //LoadConfig();
-            if (LoadSuccess && OnReloadTimerElapsed != null)
+            if (LoadSuccess)
             {
-                OnReloadTimerElapsed(sender, e);
+                OnReloadTimerElapsed?.Invoke(sender, e);
             }
         }
 
