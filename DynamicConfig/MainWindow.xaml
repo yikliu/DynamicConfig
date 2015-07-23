@@ -9,7 +9,7 @@
     xmlns:crypt1="clr-namespace:DynamicConfig.ConfigTray.Crypt"
     xmlns:util1="clr-namespace:DynamicConfig.ConfigTray.Util"
     xmlns:commands="clr-namespace:DynamicConfig.ConfigTray.Commands"
-    Icon="Resources/inin.ico"
+    Icon="Resources/config.ico"
     Title="Dynamic Config"
     Height="650" Width="1024">
     <controls:MetroWindow.CommandBindings>
@@ -26,7 +26,7 @@
         <util1:EnumMatchToBooleanConverter x:Key="EnumConverter" />
         <util1:EditEncryptBoolConverter x:Key="EditEncryptBoolConverter" />
         
-        <Image x:Key="ininImage" Source="Resources/inin.ico"></Image>
+        <Image x:Key="configImage" Source="Resources/config.ico"></Image>
 
         <Style x:Key="FocusBorderTextBox" TargetType="{x:Type TextBox}">
             <Style.Triggers>

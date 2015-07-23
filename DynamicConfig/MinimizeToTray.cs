@@ -80,7 +80,6 @@ namespace DynamicConfig.ConfigTray
                     // Initialize NotifyIcon instance "on demand"
                     _notifyIcon = new NotifyIcon();
                     _notifyIcon.Icon = Icon.ExtractAssociatedIcon(Assembly.GetExecutingAssembly().Location);
-                    //_notifyIcon.Icon = new Icon("Resources/inin.ico");
 
                     _notifyIcon.ContextMenu = _ctmStrip;
 
