@@ -12,14 +12,14 @@ Configuration data is loaded from a json file and can be accessed through dynami
     ```c#
     private static void Main(string[] args)
     {
-    	ConfigDaemon.LoadConfig(); //Load values first
-    	if (args.Contains("-service")) //start service with arguments
-    	{
-    		var servicesToRun = new ServiceBase[] { new Program() };
-    		Run(servicesToRun);
-    	}
-    	else //start UI
-    	{
+    		ConfigDaemon.LoadConfig(); //Load values first
+			if (args.Contains("-service")) //start service with arguments
+    		{
+    			var servicesToRun = new ServiceBase[] { new Program() };
+    			Run(servicesToRun);
+			}
+		else //start UI
+    		{
             ConfigDaemon.OnReloadTimerElapsed +=ConfigDaemonOnOnReloadTimerElapsed; 
             ConfigDaemon.StartWPFUIThread();
 	    }
