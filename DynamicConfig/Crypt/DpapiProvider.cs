@@ -25,7 +25,7 @@ namespace DynamicConfig.ConfigTray.Crypt
         private static string EncryptDPAPI(string stringToProtect, DataProtectionScope dataProtectionScope)
         {
             // Encrypt the data using DataProtectionScope.CurrentUser. The result can be decrypted
-            //  only by the same current user.
+            // only by the same current user.
             var bytes = EncryptionHelper.GetEntropyBytes();
             var encData = Convert.ToBase64String(ProtectedData.Protect(EncryptionHelper.GetBytes(stringToProtect),
                                                                 bytes,
