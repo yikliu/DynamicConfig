@@ -14,21 +14,25 @@ Configuration data is loaded from a json file and can be accessed through dynami
 - Developers can access config data by Using dynamic objects directly through ConfigDaemon object 
 
 ```c#
-    private static void Main(string[] args)
-    {
-    		ConfigDaemon.LoadConfig(); //Load values first
+		private static void Main(string[] args)
+		{
+    			ConfigDaemon.LoadConfig(); //Load values first
 			if (args.Contains("-service")) //start service with arguments
-    		{
-    			var servicesToRun = new ServiceBase[] { new Program() };
-    			Run(servicesToRun);
+    			{
+    				var servicesToRun = new ServiceBase[] { new Program() };
+    				Run(servicesToRun);
 			}
-		else //start UI
-    		{
-            ConfigDaemon.OnReloadTimerElapsed +=ConfigDaemonOnOnReloadTimerElapsed; 
-            ConfigDaemon.StartWPFUIThread();
-	    }
-    }
+			else //start UI
+    			{
+				ConfigDaemon.OnReloadTimerElapsed +=ConfigDaemonOnOnReloadTimerElapsed; 
+				ConfigDaemon.StartWPFUIThread();
+			}
+		}
 ```
+
+### User Interface
+![Bilby Stampede](http://i.imgur.com/bqz2oeH.png)
+
 
 License
 ----
