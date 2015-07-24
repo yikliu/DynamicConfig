@@ -9,7 +9,11 @@ Configuration data is loaded from a json file and can be accessed through dynami
 - Reference Dynamic in your project. 
 - Generate a json format config file (.conf or .json) in the path of executable file.
 - Use Main() argument to either start exe to run service or start Config UI
-    ```c#
+    
+- End users can edit config data through Config UI
+- Developers can access config data by Using dynamic objects directly through ConfigDaemon object 
+
+```c#
     private static void Main(string[] args)
     {
     		ConfigDaemon.LoadConfig(); //Load values first
@@ -24,11 +28,8 @@ Configuration data is loaded from a json file and can be accessed through dynami
             ConfigDaemon.StartWPFUIThread();
 	    }
     }
-    ```
-- End users can edit config data through Config UI
-- Developers can access config data by Using dynamic objects directly through ConfigDaemon object 
+```
 
- 
 License
 ----
 
