@@ -24,7 +24,7 @@ Configuration data is loaded from a json file and can be accessed through dynami
 			}
 			else //start UI
     			{
-				ConfigDaemon.OnReloadTimerElapsed +=ConfigDaemonOnOnReloadTimerElapsed; 
+				ConfigDaemon.OnReloadTimerElapsed += ConfigDaemonOnOnReloadTimerElapsed; 
 				ConfigDaemon.StartWPFUIThread();
 			}
 		}
